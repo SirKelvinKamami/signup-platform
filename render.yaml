@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: signup-api
+    runtime: node
+    plan: free
+    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @signup/api build
+    startCommand: node apps/api/dist/main.js
+    healthCheckPath: /api/subscriptions/plans
+    envVars:
+      - key: TURSO_DB_URL
+        value: https://turso-db-8svn.onrender.com
+      - key: TURSO_DB_TOKEN
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        value: http://localhost:3000
+      - key: PORT
+        value: 10000
+      - key: NODE_VERSION
+        value: 22
