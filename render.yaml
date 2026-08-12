@@ -3,7 +3,7 @@ services:
     name: signup-api
     runtime: node
     plan: free
-    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @signup/api build
+    buildCommand: pnpm install --frozen-lockfile --prod=false && pnpm --filter @signup/api build
     startCommand: node apps/api/dist/main.js
     healthCheckPath: /api/subscriptions/plans
     envVars:
